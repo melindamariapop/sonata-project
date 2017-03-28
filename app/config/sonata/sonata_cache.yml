@@ -1,0 +1,11 @@
+sonata_cache:
+    caches:
+        symfony:
+            token: s3cur3 # token used to clear the related cache
+            php_cache_enabled: true # Optional (default: false), clear APC or PHP OPcache
+            types: [mytype1, mycustomtype2] # Optional, you can restrict allowed cache types
+            servers:
+                - { domain: sonata-training.local, ip: 127.0.0.1, port: 8080 }
+            timeout:
+                RCV: { sec: 2, usec: 0 }
+                SND: { sec: 2, usec: 0 }
