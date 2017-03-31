@@ -26,6 +26,7 @@
         "sonata-project/notification-bundle": "^3.1",
         "sonata-project/page-bundle": "^3.4",
         "sonata-project/seo-bundle": "^2.1",
+        "symfony-cmf/routing": "1.4.0",
         "symfony-cmf/routing-bundle": "1.4.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/monolog-bundle": "^3.0.2",
