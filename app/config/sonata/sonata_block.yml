@@ -5,3 +5,16 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+        sonata.block.service.text:
+        sonata.block.service.container:
+        #~ sonata.block.service.rss:
+        sonata.block.service.menu:
+        sonata.block.service.template:
+            contexts:   [admin]
+
+        # PageBundle's Blocks
+        sonata.page.block.container:
+            contexts:   [admin]
+
+        # My blocks
+        sonata.block.header:
