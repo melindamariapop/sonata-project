@@ -7,7 +7,7 @@ sonata_block:
             contexts: [admin]
         sonata.block.service.text:
         sonata.block.service.container:
-        #~ sonata.block.service.rss:
+        sonata.block.service.rss:
         sonata.block.service.menu:
         sonata.block.service.template:
             contexts:   [admin]
@@ -16,5 +16,3 @@ sonata_block:
         sonata.page.block.container:
             contexts:   [admin]
 
-        # My blocks
-        sonata.block.header:

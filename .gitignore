@@ -16,7 +16,7 @@
 .project
 .settings/
 /.idea/
-
+.idea/workspace.xml
 # Excluding unwanted files
 .DS_Store
 

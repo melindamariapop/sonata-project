@@ -5,10 +5,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: User }
 
-    sonata.block.header:
-        class: Sonata\BlockBundle\Block\HeaderBlockService
+    sonata.block.service.rss:
+        class: Sonata\BlockBundle\Block\RssBlockService
         arguments:
-            - sonata.block.header
+            - sonata.block.service.rss
             - "@templating"
         tags:
             - { name: sonata.block }

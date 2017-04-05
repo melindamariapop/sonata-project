@@ -2,29 +2,30 @@
 
 namespace Sonata\BlockBundle\Block;
 
-use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\BlockBundle\Block\BlockContextInterface;
-
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 
-class HeaderBlockService extends AbstractBlockService implements BlockServiceInterface
+class RssBlockService extends BaseBlockService
 {
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function __construct($name, EngineInterface $templating)
     {
-        $resolver->setDefaults(array(
-            'url'      => false,
-            'title'    => 'Insert the rss title',
-            'template' => 'SonataBlockBundle:Block:block_core_rss.html.twig',
-        ));
+        parent::__construct($name, $templating);
+    }
+
+    /**
+     * @return array
+     */
+    function getDefaultSettings()
+    {
+        return array(
+            'url'     => false,
+            'title'   => 'Insert the rss title'
+        );
     }
 
     /**
@@ -33,21 +34,19 @@ class HeaderBlockService extends AbstractBlockService implements BlockServiceInt
      */
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
-        $formMapper
-            ->add('settings', 'sonata_type_immutable_array', array(
-                'keys' => array(
-                    array('url', 'url', array('required' => false)),
-                    array('title', 'text', array('required' => false)),
-                )
-            ))
-        ;
+        $formMapper->add('settings', 'sonata_type_immutable_array', array(
+            'keys' => array(
+                array('url', 'url', array('required' => false)),
+                array('title', 'text', array('required' => false)),
+            )
+        ));
     }
 
     /**
      * @param ErrorElement $errorElement
      * @param BlockInterface $block
      */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
+    function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
         $errorElement
             ->with('settings.url')
@@ -58,21 +57,20 @@ class HeaderBlockService extends AbstractBlockService implements BlockServiceInt
             ->assertNotNull(array())
             ->assertNotBlank()
             ->assertMaxLength(array('limit' => 50))
-            ->end()
-        ;
+            ->end();
     }
 
     /**
-     * @param \Sonata\BlockBundle\Block\BlockContextInterface $blockContext
+     * @param BlockInterface $block
      * @param Response|null $response
      * @return mixed
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockInterface $block, Response $response = null)
     {
         // merge settings
-        $settings = $blockContext->getSettings();
-        $feeds = false;
+        $settings = array_merge($this->getDefaultSettings(), $block->getSettings());
 
+        $feeds = false;
         if ($settings['url']) {
             $options = array(
                 'http' => array(
@@ -89,15 +87,15 @@ class HeaderBlockService extends AbstractBlockService implements BlockServiceInt
                 try {
                     $feeds = new \SimpleXMLElement($content);
                     $feeds = $feeds->channel->item;
-                } catch (\Exception $e) {
+                } catch(\Exception $e) {
                     // silently fail error
                 }
             }
         }
 
-        return $this->renderResponse($blockContext->getTemplate(), array(
+        return $this->renderResponse('SonataBlockBundle:Block:block_core_rss.html.twig', array(
             'feeds'     => $feeds,
-            'block'     => $blockContext->getBlock(),
+            'block'     => $block,
             'settings'  => $settings
         ), $response);
     }
