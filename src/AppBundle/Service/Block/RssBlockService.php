@@ -1,11 +1,10 @@
 <?php
 
-namespace Sonata\BlockBundle\Block;
+namespace AppBundle\Service\Block;
 
+use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Validator\ErrorElement;
@@ -26,6 +25,11 @@ class RssBlockService extends BaseBlockService
             'url'     => false,
             'title'   => 'Insert the rss title'
         );
+    }
+
+    public function getName()
+    {
+        return "Gallerydasaasadas";
     }
 
     /**

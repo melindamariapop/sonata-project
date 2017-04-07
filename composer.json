@@ -28,7 +28,7 @@
         "sonata-project/seo-bundle": "^2.1",
         "symfony-cmf/routing": "1.4.0",
         "symfony-cmf/routing-bundle": "1.4.0",
-        "symfony/assetic-bundle": "~2.3",
+        "symfony/assetic-bundle": "^2.8",
         "symfony/monolog-bundle": "^3.0.2",
         "symfony/swiftmailer-bundle": "~2.3,>=2.3.10",
         "symfony/symfony": "2.8.*",

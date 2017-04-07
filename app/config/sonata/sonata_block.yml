@@ -9,6 +9,7 @@ sonata_block:
         sonata.block.service.container:
         sonata.block.service.rss:
         sonata.block.service.menu:
+#        sonata.admin.block.search_result:
         sonata.block.service.template:
             contexts:   [admin]
 
@@ -16,3 +17,6 @@ sonata_block:
         sonata.page.block.container:
             contexts:   [admin]
 
+        # my blocks
+        sonata.block.gallery: ~
+        app.block.header: ~

@@ -1,0 +1,18 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <h3 class="sonata-feed-title">{{ settings.title }}</h3>
+    <h4 class="sonata-feed-title">{{ settings.description }}</h4>
+
+    <div>
+        {% for photo in photos %}
+            {% if loop.index <= settings.nrPhotos %}
+            <div class="col-lg-3">
+                <img src="{{ asset(photo) }}" style="width: 300px; height: 300px;">
+            </div>
+            {% endif %}
+        {% else %}
+            No photos available.
+        {% endfor %}
+    </div>
+{% endblock %}
