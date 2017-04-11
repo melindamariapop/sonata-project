@@ -7,15 +7,57 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}">
     </head>
     <body>
         {% block body %}
-            Hello dear!
-            {% for block in page.blocks %}
-                <div>
-                    {{ sonata_block_render(block) }}
+            {% block sonata_page_container %}
+                {% block header %}
+                    {% if page.name != 'My first page' %}
+                        {{ sonata_block_render({'type': 'app.block.header', 'page':page}) }}
+                    {% else %}
+                        {{ sonata_page_render_container('header') }}
+                    {% endif %}
+                {% endblock header %}
+                {% if page is defined %}
+                    <div class="row content-top">
+                        {% if page.name != 'global'%}
+                            {{ sonata_page_render_container('content_top', 'global') }}
+                        {% endif %}
+                        {{ sonata_page_render_container('content_top', page) }}
+                    </div>
+                {% endif %}
+
+                <div class="row content">
+                    {% block page_content %}
+                        {% if content is defined %}
+                            {{ content|raw }}
+                        {% else %}
+                            {% set content = block('content') %}
+                            {% if content|length > 0 %}
+                                {{ content|raw }}
+                            {% elseif page is defined %}
+                                {{ sonata_page_render_container('content', page) }}
+                            {% endif %}
+                        {% endif %}
+                    {% endblock %}
                 </div>
-            {% endfor %}
+
+                {% if page is defined %}
+                    <div class="row content-bottom">
+                        {{ sonata_page_render_container('content_bottom', page) }}
+
+                        {% if page.name != 'global'%}
+                            {{ sonata_page_render_container('content_bottom', 'global') }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% block footer %}
+                <footer class="row footer">
+                    {{ sonata_page_render_container('footer', 'global') }}
+                </footer>
+             {% endblock %}
+            {% endblock %}
 
         {% endblock %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

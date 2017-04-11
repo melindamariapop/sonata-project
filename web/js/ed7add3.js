@@ -1,4 +1,5 @@
 $(document).ready(function () {
-   $('form').attr('novalidate');
-   console.log('intra in javascripts');
+   $('form').each( function () {
+       $(this).attr('novalidate', 'novalidate');
+   });
 });

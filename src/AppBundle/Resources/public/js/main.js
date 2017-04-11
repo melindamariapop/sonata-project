@@ -1,3 +1,3 @@
-$(document).ready(function () {
-   $('.sonata-ba-form form').attr('novalidate', 'novalidate');
+$(document).ajaxComplete(function () {
+   $('form').attr('novalidate', 'novalidate');
 });

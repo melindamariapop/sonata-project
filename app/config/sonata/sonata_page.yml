@@ -57,7 +57,7 @@ sonata_page:
     default_template: default
     templates:
         default:
-            path: '::base.html.twig'
+            path: 'SonataPageBundle::layout.html.twig'
             name: 'default'
         Homepage:
             path: '::base.html.twig'
@@ -96,38 +96,35 @@ sonata_page:
             path: 'AppBundle:Pages:firstPage.html.twig'
             name: 'My first page'
             containers:
+                header:
+                    name: Header
                 content_top:
                     name: Top content
                 content:
                     name: Main content
-                left_col:
-                    name: Left column
-                    blocks:
-                        - sonata.media.block.media
-                        - sonata.media.block.gallery
-                        - sonata.media.block.feature_media
-                right_col:
-                    name: Right column
-                    blocks:
-                        - sonata.news.block.recent_posts
-                        - sonata.order.block.recent_orders
-                        - sonata.product.block.recent_products
+                content_bottom:
+                    name: Bottom content
+                footer:
+                    name: Footer
             matrix:
                 layout: |
+                    HHHHHHHH
+                    HHHHHHHH
                     TTTTTTTT
                     TTTTTTTT
                     CCCCCCCC
                     CCCCCCCC
-                    LLLLLLLL
-                    LLLLLLLL
-                    RRRRRRRR
-                    RRRRRRRR
+                    BBBBBBBB
+                    BBBBBBBB
+                    FFFFFFFF
+                    FFFFFFFF
 
                 mapping:
+                    H: header
                     T: content_top
                     C: content
-                    L: left_col
-                    R: right_col
+                    B: content_bottom
+                    F: footer
         second_page:
             path: 'AppBundle:Pages:secondPage.html.twig'
             name: 'My second page'
@@ -257,10 +254,6 @@ sonata_admin:
             - bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js
             - bundles/sonataadmin/Admin.js
             - bundles/sonataadmin/treeview.js
-            - bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
-            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
             - bundles/sonatapage/sonata-page.back.min.js
             - bundles/app/js/main.js
 
@@ -279,6 +272,4 @@ sonata_admin:
             - bundles/sonataadmin/css/styles.css
             - bundles/sonataadmin/css/layout.css
             - bundles/sonataadmin/css/tree.css
-            - bundles/sonataadmin/css/colors.css
-            - bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
-            - bundles/sonatapage/sonata-page.back.min.css
+            - bundles/sonatapage/sonata-page.back.css
