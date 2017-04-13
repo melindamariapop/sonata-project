@@ -13,12 +13,8 @@
         {% block body %}
             {% block sonata_page_container %}
                 {% block header %}
-                    {% if page.name != 'My first page' %}
-                        {{ sonata_block_render({'type': 'app.block.header', 'page':page}) }}
-                    {% else %}
-                        {{ sonata_page_render_container('header') }}
-                    {% endif %}
-                {% endblock header %}
+                    {{ sonata_page_render_container('header', page) }}
+                {% endblock %}
                 {% if page is defined %}
                     <div class="row content-top">
                         {% if page.name != 'global'%}
@@ -37,7 +33,9 @@
                             {% if content|length > 0 %}
                                 {{ content|raw }}
                             {% elseif page is defined %}
-                                {{ sonata_page_render_container('content', page) }}
+                                {% block content %}
+                                    {{ sonata_page_render_container('content', page) }}
+                                {% endblock %}
                             {% endif %}
                         {% endif %}
                     {% endblock %}

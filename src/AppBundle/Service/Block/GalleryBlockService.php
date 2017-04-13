@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Service\Block;
 
+use Doctrine\ORM\EntityManager;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -12,12 +13,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GalleryBlockService extends BaseBlockService
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
 
-    public function __construct($name, EngineInterface $templating)
+    /**
+     * GalleryBlockService constructor.
+     * @param null|string $name
+     * @param EngineInterface $templating
+     * @param EntityManager $em
+     */
+    public function __construct($name, EngineInterface $templating, EntityManager $em)
     {
+        $this->em = $em;
         parent::__construct($name, $templating);
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return "Gallery";
@@ -67,18 +82,10 @@ class GalleryBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $photos = [
-            '/bundles/app/images/cover.jpg',
-            '/bundles/app/images/download.jpg',
-            '/bundles/app/images/images.jpg',
-            '/bundles/app/images/img2.png',
-            '/bundles/app/images/img111.jpg',
-            '/bundles/app/images/pic.jpg',
-            '/bundles/app/images/wood1.jpg',
-        ];
+        $gallery = $this->em->getRepository('ApplicationSonataMediaBundle:Gallery')->find(1);
 
         return $this->renderResponse($blockContext->getTemplate(), array(
-            'photos'     => $photos,
+            'gallery'     => $gallery,
             'context' => $blockContext,
             'block' => $blockContext->getBlock(),
             'settings' => $blockContext->getSettings(),

@@ -10,6 +10,7 @@ services:
         arguments:
             - ~
             - "@templating"
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: sonata.block }
 
@@ -20,3 +21,15 @@ services:
             - "@templating"
         tags:
           - { name: sonata.block }
+
+    app.admin.product:
+        class: AppBundle\Admin\ProductAdmin
+        arguments: [~, AppBundle\Entity\Product, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Product }
+
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Category }

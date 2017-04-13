@@ -170,7 +170,23 @@ sonata_page:
                 mapping:
                     T: content_top
                     C: content
-
+        another_page:
+            path: 'AppBundle:Pages:anotherPage.html.twig'
+            name: 'Another page'
+            containers:
+                content_top:
+                    name: Top content
+                content:
+                    name: Main content
+            matrix:
+                layout: |
+                    TTTTTTTT
+                    TTTTTTTT
+                    CCCCCCCC
+                    CCCCCCCC
+                mapping:
+                    T: content_top
+                    C: content
 sonata_admin:
     security:
         handler:              sonata.admin.security.handler.noop
@@ -201,10 +217,11 @@ sonata_admin:
         acl_user_manager:     null
     title:                'Sonata Admin'
     title_logo:           bundles/sonataadmin/logo_title.png
+
     templates:
         user_block:           'SonataAdminBundle:Core:user_block.html.twig'
         add_block:            'SonataAdminBundle:Core:add_block.html.twig'
-        layout:               'SonataAdminBundle::standard_layout.html.twig'
+        layout:               'SonataAdminBundle::layout.html.twig'
         ajax:                 'SonataAdminBundle::ajax_layout.html.twig'
         dashboard:            'SonataAdminBundle:Core:dashboard.html.twig'
         search:               'SonataAdminBundle:Core:search.html.twig'
