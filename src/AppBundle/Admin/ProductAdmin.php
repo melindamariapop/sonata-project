@@ -75,9 +75,8 @@ class ProductAdmin extends AbstractAdmin
                 'source_field_options'      => [
                     'attr' => ['class' => 'span10', 'rows' => 10]
                 ],
-                'listener'       => true,
+                'listener'       => false,
                 'target_field'   => 'description',
-                'ckeditor_context'     => 'default',
             ])
             ->add('category', 'sonata_type_model', [
                 'class' => Category::class,

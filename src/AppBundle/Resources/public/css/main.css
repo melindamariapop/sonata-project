@@ -20,8 +20,6 @@
 }
 
 .content-top {
-    padding: 30px;
-    min-height: 150px;
     background-color: darkseagreen;
 }
 
@@ -30,13 +28,18 @@
 }
 
 .content-bottom {
-    padding: 30px;
-    min-height: 300px;
     background-color: grey;
 }
 
 .footer {
-    padding: 30px;
-    min-height: 150px;
     background-color: lightgrey;
+}
+
+.list-group {
+    color: red;
+    font-size: 20px;
+}
+
+header {
+    visibility: hidden;
 }

@@ -12,7 +12,8 @@ sonata_block:
         sonata.media.block.media:
         sonata.media.block.gallery:
         sonata.formatter.block.formatter:
-        sonata.page.block.children_pages:
+        app.sonata.block.menu:
+        sonata.page.block.shared_block:
 #        sonata.admin.block.search_result:
         sonata.block.service.template:
             contexts:   [admin]

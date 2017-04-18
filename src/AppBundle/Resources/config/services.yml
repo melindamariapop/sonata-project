@@ -33,3 +33,21 @@ services:
         arguments: [~, AppBundle\Entity\Category, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Category }
+
+    app.sonata.block.menu:
+        class: AppBundle\Service\Block\SiteMenuBlockService
+        arguments:
+            - "My menu"
+            - "@templating"
+            - "@knp_menu.menu_provider"
+            - "%main_menu%"
+            - "%sidebar_menu%"
+        tags:
+            - { name: sonata.block }
+
+    app.menu_builder:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: %main_menu% }
+            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: %sidebar_menu% }

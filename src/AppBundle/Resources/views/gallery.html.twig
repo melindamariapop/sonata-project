@@ -4,13 +4,19 @@
     <h3 class="sonata-feed-title margin-15">{{ settings.title }}</h3>
     <h4 class="sonata-feed-title margin-15">{{ settings.description }}</h4>
 
-    <div>
-        <div class="margin-bottom-30">
-            {% for img in gallery.galleryHasMedias %}
-                {% if loop.index <= settings.nrPhotos %}
-                    <img style="width: 150px; height: 150px" src="{% path img.media, 'reference' %}">
+    {% for product in products %}
+        <div>
+            <h2>{{ product.title }} - category {{ product.category.name }}</h2>
+            <p>{{ product.rawDescription|raw }} {{ product.createdAt|date('F, d') }}</p>
+            <div class="margin-bottom-30">
+                {% if product.gallery %}
+                {% for img in product.gallery.galleryHasMedias %}
+                    {% if loop.index <= settings.nrPhotos %}
+                        <img style="width: 150px; height: 150px" src="{% path img.media, 'reference' %}">
+                    {% endif %}
+                {% endfor %}
                 {% endif %}
-            {% endfor %}
+            </div>
         </div>
-    </div>
+    {% endfor %}
 {% endblock %}

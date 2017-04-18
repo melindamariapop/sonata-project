@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block content %}
     <form action="{{ path('login_check') }}" method="post" style="width: 30%;margin: 30px auto;">
         <div class="form-group{% if error %} has-warning{% endif %}">
             <label class="form-control-label" for="username">Username</label>

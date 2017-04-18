@@ -13,6 +13,7 @@ cmf_routing:
                 enabled: false
 
 sonata_page:
+    hide_disabled_blocks: true
     is_inline_edition_on:  false
     multisite: host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
@@ -272,6 +273,11 @@ sonata_admin:
             - bundles/sonataadmin/Admin.js
             - bundles/sonataadmin/treeview.js
             - bundles/sonatapage/sonata-page.back.min.js
+            - bundles/ivoryckeditor/ckeditor.js
+            - bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
+            - bundles/sonataformatter/markitup/sets/markdown/set.js
+            - bundles/sonataformatter/markitup/sets/html/set.js
+            - bundles/sonataformatter/markitup/sets/textile/set.js
             - bundles/app/js/main.js
 
         stylesheets:
@@ -290,3 +296,7 @@ sonata_admin:
             - bundles/sonataadmin/css/layout.css
             - bundles/sonataadmin/css/tree.css
             - bundles/sonatapage/sonata-page.back.css
+            - bundles/sonataformatter/markitup/skins/sonata/style.css
+            - bundles/sonataformatter/markitup/sets/markdown/style.css
+            - bundles/sonataformatter/markitup/sets/html/style.css
+            - bundles/sonataformatter/markitup/sets/textile/style.css
