@@ -1,3 +1,7 @@
+parameters:
+    sonata.page.admin.page.class:       Application\Sonata\PageBundle\Admin\PageAdmin
+#    sonata.page.service.default.class:  Application\Sonata\PageBundle\Page\Service\DefaultPageService
+#    sonata.page.admin.page.controller:  ApplicationSonataPageBundle:PageAdmin
 cmf_routing:
     chain:
         routers_by_id:

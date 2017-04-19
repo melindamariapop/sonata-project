@@ -1,0 +1,6 @@
+services:
+    application_sonata_page.admin.page:
+        class: Application\Sonata\PageBundle\Admin\PageAdmin
+        arguments: [~, Application\Sonata\PageBundle\Entity\Page, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Page }

@@ -47,7 +47,7 @@ services:
 
     app.menu_builder:
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory"]
+        arguments: ["@knp_menu.factory", "@sonata.page.cms.page", "@doctrine.orm.entity_manager", "@request_stack"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: %main_menu% }
             - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: %sidebar_menu% }

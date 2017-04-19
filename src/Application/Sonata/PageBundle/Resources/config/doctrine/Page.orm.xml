@@ -17,5 +17,8 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <field name="showOnMenu" type="boolean" column="show_on_menu" default="false" nullable="true" />
+
+
     </entity>
 </doctrine-mapping>

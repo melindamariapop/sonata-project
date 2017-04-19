@@ -39,4 +39,25 @@ class Page extends BasePage
     {
         return $this->id;
     }
+
+    /**
+     * @var boolean
+     */
+    private $showOnMenu;
+
+    /**
+     * @return bool
+     */
+    public function isShowOnMenu()
+    {
+        return $this->showOnMenu;
+    }
+
+    /**
+     * @param bool $showOnMenu
+     */
+    public function setShowOnMenu($showOnMenu)
+    {
+        $this->showOnMenu = $showOnMenu;
+    }
 }
