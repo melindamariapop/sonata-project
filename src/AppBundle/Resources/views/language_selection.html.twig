@@ -1,0 +1,3 @@
+{% for language in LANGUAGES %}
+    <span class="languages"><a href="{{ path('app_language_selection', {language: language}) }}"><img src="{{ asset('bundles/app/images/flags/' ~ language ~'.svg') }}"> </a></span>
+{% endfor %}

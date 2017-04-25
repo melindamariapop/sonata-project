@@ -42,6 +42,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        LANGUAGES: "%languages%"
     form:
         resources:
             - 'SonataFormatterBundle:Form:formatter.html.twig'
@@ -105,3 +107,13 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
+
+knp_doctrine_behaviors:
+    translatable: true
+
+a2lix_translation_form:
+    locale_provider: default       # [1]
+    locales: "%languages%"     # [1-a]
+    default_locale: en             # [1-b]
+    required_locales: [en]         # [1-c]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [2]

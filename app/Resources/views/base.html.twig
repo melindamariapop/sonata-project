@@ -6,56 +6,75 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}">
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('bundles/app/css/business-casual.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+{% endblock %}
+{% block sonata_page_body_tag %} {# optional, just to remove the .sonata-bc class #}
 
 {% endblock %}
 {% block sonata_page_container %}
-    {% block header %}
+    <div class="brand">{{ site.name }}</div>
+    <div class="address-bar">{{ site.title }}</div>
         {% if page is defined %}
             {{ sonata_page_render_container('header', page) }}
         {% else %}
             {{ sonata_page_render_container('header', 'global') }}
         {% endif %}
-    {% endblock %}
-    {% if page is defined %}
-        <div class="row content-top">
-            {% if page.name != 'global'%}
-                {{ sonata_page_render_container('content_top', 'global') }}
-            {% endif %}
-            {{ sonata_page_render_container('content_top', page) }}
-        </div>
-    {% endif %}
-
-    <div class="row content">
-        {% block page_content %}
-            {% if content is defined %}
-                {{ content|raw }}
-            {% else %}
-                {% set content = block('content') %}
-                {% if content|length > 0 %}
-                    {{ content|raw }}
-                {% elseif page is defined %}
-                    {% block content %}
-                        {{ sonata_page_render_container('content', page) }}
-                    {% endblock %}
-                {% endif %}
-            {% endif %}
-        {% endblock %}
+    <div class="language-container">
+        {% include '@App/language_selection.html.twig' %}
     </div>
+    <div class="container">
+        {% if page is defined %}
+            <div class="row">
+                {% if page.name != 'global'%}
+                    {{ sonata_page_render_container('content_top', 'global') }}
+                {% endif %}
+                {{ sonata_page_render_container('content_top', page) }}
+            </div>
+        {% endif %}
 
-    {% if page is defined %}
-        <div class="row content-bottom">
-            {{ sonata_page_render_container('content_bottom', page) }}
-
-            {% if page.name != 'global'%}
-                {{ sonata_page_render_container('content_bottom', 'global') }}
-            {% endif %}
+        <div class="row">
+            {% block page_content %}
+                {% if content is defined %}
+                    {{ content|raw }}
+                {% else %}
+                    {% set content = block('content') %}
+                    {% if content|length > 0 %}
+                        {{ content|raw }}
+                    {% elseif page is defined %}
+                        {{ sonata_page_render_container('content', page) }}
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
         </div>
-    {% endif %}
-{% block footer %}
-    <footer class="row footer">
-        {{ sonata_page_render_container('footer', 'global') }}
-    </footer>
- {% endblock %}
+
+        {% if page is defined %}
+            <div class="row content-bottom">
+                {{ sonata_page_render_container('content_bottom', page) }}
+                {% if page.name != 'global'%}
+                    {{ sonata_page_render_container('content_bottom', 'global') }}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    {% block footer %}
+        <footer class="row">
+            <div class="container" style="padding-top: 20px">
+                {% if page is defined %}
+                    {{ sonata_page_render_container('footer', page) }}
+                {% endif %}
+                {{ sonata_page_render_container('footer', 'global') }}
+            </div>
+        </footer>
+    {% endblock %}
 {% endblock %}
 
 {% block sonata_page_javascripts %}
@@ -63,7 +82,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% javascripts '@AppBundle/Resources/public/js/main.js' %}
+    {% javascripts
+        '@AppBundle/Resources/public/js/main.js'
+        '@AppBundle/Resources/public/js/bootstrap.min.js'
+        '@AppBundle/Resources/public/js/jquery.js'
+    %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

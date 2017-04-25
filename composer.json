@@ -13,9 +13,11 @@
     },
     "require": {
         "php": ">=5.3.9",
+        "a2lix/translation-form-bundle": "^2.1",
         "doctrine/doctrine-bundle": "~1.4",
         "doctrine/orm": "^2.4.8",
         "incenteev/composer-parameter-handler": "~2.0",
+        "knplabs/doctrine-behaviors": "~1.1",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "sonata-project/admin-bundle": "^3.15",

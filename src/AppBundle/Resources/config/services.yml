@@ -14,6 +14,25 @@ services:
         tags:
             - { name: sonata.block }
 
+    app.block.main_content:
+        class: AppBundle\Service\Block\MainContentBlockService
+        arguments:
+            - ~
+            - "@templating"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            -
+             { name: sonata.block }
+
+    app.block.footer:
+            class: AppBundle\Service\Block\FooterBlockService
+            arguments:
+                - ~
+                - "@templating"
+                - "@doctrine.orm.entity_manager"
+            tags:
+                - { name: sonata.block }
+
     app.block.header:
         class: AppBundle\Service\Block\HeaderBlockService
         arguments:
@@ -51,3 +70,9 @@ services:
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: %main_menu% }
             - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: %sidebar_menu% }
+
+    app.route_listener:
+        class: AppBundle\EventListener\RouteListener
+        arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest  }

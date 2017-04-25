@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
 
-{% block content %}
+{#{% block content %}#}
     <form action="{{ path('login_check') }}" method="post" style="width: 30%;margin: 30px auto;">
         <div class="form-group{% if error %} has-warning{% endif %}">
             <label class="form-control-label" for="username">Username</label>
@@ -17,4 +17,4 @@
             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
     </form>
-{% endblock %}
+{#{% endblock %}#}

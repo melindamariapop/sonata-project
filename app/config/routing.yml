@@ -1,5 +1,7 @@
-homepage:
-    path: /
+app:
+    resource: "@AppBundle/Controller"
+    type: annotation
+    prefix: /
 
 login:
     path: /login

@@ -13,6 +13,9 @@ sonata_block:
         sonata.media.block.gallery:
         sonata.formatter.block.formatter:
         app.sonata.block.menu:
+        app.block.main_content:
+        sonata.block.gallery:
+        app.block.footer:
         sonata.page.block.shared_block:
 #        sonata.admin.block.search_result:
         sonata.block.service.template:
@@ -23,5 +26,4 @@ sonata_block:
             contexts:   [admin]
 
         # my blocks
-        sonata.block.gallery: ~
         app.block.header: ~

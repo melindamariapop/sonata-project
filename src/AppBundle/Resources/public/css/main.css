@@ -1,5 +1,11 @@
+a {
+    color: white;
+}
+a:hover, a:focus {
+    text-decoration: none;
+}
 .row {
-    margin: 0;
+    margin: 0!important;
 }
 .header {
     width: 100%;
@@ -25,6 +31,8 @@
 
 .content {
     background-color: whitesmoke;
+    padding: 0!important;
+    margin: 0!important;
 }
 
 .content-bottom {
@@ -42,4 +50,30 @@
 
 header {
     visibility: hidden;
+}
+
+.language-container {
+    text-align: right;
+    margin: 15px;
+}
+
+.languages {
+    padding: 3px;
+}
+
+.languages img {
+    height: 20px;
+}
+
+.address-bar {
+    font-weight: 600!important;
+    color: black!important;
+}
+
+.brand {
+    font-family: Arial, Helvetica, sans-serif!important;
+}
+
+footer p {
+    padding: 0!important;
 }

@@ -1,7 +1,5 @@
 parameters:
     sonata.page.admin.page.class:       Application\Sonata\PageBundle\Admin\PageAdmin
-#    sonata.page.service.default.class:  Application\Sonata\PageBundle\Page\Service\DefaultPageService
-#    sonata.page.admin.page.controller:  ApplicationSonataPageBundle:PageAdmin
 cmf_routing:
     chain:
         routers_by_id:
@@ -32,6 +30,10 @@ sonata_page:
         - sonata_page_(.*)
         - sonata_news_(.*)
         - sonata_cache_(.*)
+        - app_(.*)
+        - admin
+        - login
+        - login_check
 
     ignore_routes:
         - sonata_page_cache_esi
@@ -48,9 +50,11 @@ sonata_page:
         - admin
         - login
         - login_check
+        - app_(.*)
 
     ignore_uri_patterns:
         - ^/admin\/   # ignore admin route, ie route containing 'admin'
+        - app_(.*)
 
     page_defaults:
         homepage: {decorate: false, enabled: true} # disable decoration for homepage, key - is a page route
@@ -283,6 +287,7 @@ sonata_admin:
             - bundles/sonataformatter/markitup/sets/html/set.js
             - bundles/sonataformatter/markitup/sets/textile/set.js
             - bundles/app/js/main.js
+            - bundles/a2lixtranslationform/js/a2lix_translation_bootstrap.js
 
         stylesheets:
             - bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css

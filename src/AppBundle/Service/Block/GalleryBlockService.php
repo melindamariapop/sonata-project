@@ -3,9 +3,12 @@ namespace AppBundle\Service\Block;
 
 use AppBundle\Entity\Product;
 use Application\Sonata\MediaBundle\Entity\Gallery;
+use Application\Sonata\PageBundle\Entity\Block;
+use Application\Sonata\PageBundle\Entity\BlockTranslation;
 use Doctrine\ORM\EntityManager;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Sonata\BlockBundle\Model\BlockInterface;
@@ -50,7 +53,7 @@ class GalleryBlockService extends BaseBlockService
             'description' => "Awesome gallery",
             'nrPhotos' => 8,
             'gallery' => $this->em->getRepository(Gallery::class)->findBy([],['id'=> 'asc']),
-            'template' => 'AppBundle::gallery.html.twig',
+            'template' => 'AppBundle:Blocks:gallery.html.twig',
         ));
     }
 
@@ -67,11 +70,6 @@ class GalleryBlockService extends BaseBlockService
                         'required' => true,
                         'label' => 'Gallery Title'
                     ]],
-                    ['description', 'sonata_simple_formatter_type', [
-                        'format' => 'richhtml',
-                        'required' => true,
-                        'label' => 'Gallery Description'
-                    ]],
                     ['nrPhotos', 'integer', [
                         'required' => true,
                         'label' => 'Number of photos on the page'
@@ -79,9 +77,26 @@ class GalleryBlockService extends BaseBlockService
                     ['gallery', 'entity', [
                         'class' => Gallery::class,
                         'required' => true,
-                        'label' => 'gallery test'
+                        'label' => 'gallery photos'
                     ]]
                 ],
+            ]);
+        $formMapper
+            ->add('translations', 'a2lix_translations', [
+                'label' => 'Translatable fields ',
+                'fields' => [
+                    'translatableFields' => [
+                        'label' => false,
+                        'field_type' => 'sonata_type_immutable_array',
+                        'keys' => [
+                            ['description', 'sonata_simple_formatter_type', [
+                                'format' => 'richhtml',
+                                'required' => true,
+                                'label' => 'Gallery Description'
+                            ]]
+                        ]
+                    ]
+                ]
             ]);
     }
 
@@ -93,12 +108,25 @@ class GalleryBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $products = $this->em->getRepository(Product::class)->findAll();
+        $translationFields =  $this->em->getRepository(BlockTranslation::class)->findOneBy(['translatable'=>$blockContext->getBlock(),'locale'=>'it'])->getTranslatableFields();
+        $block = $this->em->getRepository(Block::class)->find($blockContext->getBlock());
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'products' => $products,
             'context' => $blockContext,
-            'block' => $blockContext->getBlock(),
+            'block' => $block,
             'settings' => $blockContext->getSettings(),
+            'translationFields' => $translationFields,
         ), $response);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockMetadata($code = null)
+    {
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataBlockBundle', [
+            'class' => ' fa fa-file-text',
+        ]);
     }
 }

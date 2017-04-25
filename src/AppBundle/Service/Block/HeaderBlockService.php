@@ -29,7 +29,7 @@ class HeaderBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title' => 'This is a header',
-            'columns'   => 3,
+            'image'   => null,
             'template' => '::header.html.twig',
         ));
     }
@@ -46,9 +46,9 @@ class HeaderBlockService extends BaseBlockService
                     'required' => true,
                     'label' => 'Title for header',
                 ]],
-                ['columns', 'integer', [
+                ['image', 'file', [
                     'required' => true,
-                    'label' => 'Columns in header',
+                    'label' => 'Image Header',
                 ]]
             ]
         ]);

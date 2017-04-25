@@ -19,3 +19,5 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     main_menu: Main menu
     sidebar_menu: Sidebar Menu
+    languages: [en, fr, it, ro]
+

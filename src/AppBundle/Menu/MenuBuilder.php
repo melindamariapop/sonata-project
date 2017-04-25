@@ -53,6 +53,9 @@ class MenuBuilder
     public function createMainMenu(array $options)
     {
         $menu = $this->factory->createItem('main');
+        if (array_key_exists('menu_class', $options)) {
+            $menu->setChildrenAttribute('class', $options['menu_class']);
+        }
 
         $pages = $this->getPagesForMainMenu();
         foreach ($pages as $page) {
@@ -69,6 +72,8 @@ class MenuBuilder
     public function createSidebarMenu(array $options)
     {
         $menu = $this->factory->createItem('sidebar');
+        $menu->setAttribute('class', $options['menu_class']);
+        $menu->setChildrenAttribute('class', $options['children_class']);
 
         $menu->addChild('Google', array('uri' => 'http://www.google.com'));
         $menu->addChild('Facebook', array('uri' => 'http://www.facebook.com'));
@@ -84,11 +89,7 @@ class MenuBuilder
     public function getPagesForMainMenu()
     {
         $page = $this->pageManager->getCurrentPage();
-
-        if (!$page) {
-            return false;
-        }
-        $homepage = $page->getParent() ? $page->getParent() : $this->em->getRepository(Page::class)->findOneBy(['site' => $page->getSite(), 'url' => '/']);
+        $homepage = $page && $page->getParent() ? $page->getParent() : $this->em->getRepository(Page::class)->findOneBy(['site' => $this->getCurrentSite(), 'url' => '/']);
 
         $pages = $this->em->getRepository('ApplicationSonataPageBundle:Page')
             ->createQueryBuilder('p')
@@ -104,6 +105,7 @@ class MenuBuilder
             ->getResult()
             ;
 
+
         return $pages;
     }
 
@@ -114,6 +116,6 @@ class MenuBuilder
             return $page->getSite();
         }
 
-        return $this->em->getRepository(Page::class)->findOneBy(['host'=>$this->requestStack->getCurrentRequest()->getHost()]);
+        return $this->em->getRepository(Site::class)->findOneBy(['host'=>$this->requestStack->getCurrentRequest()->getHost()]);
     }
 }
