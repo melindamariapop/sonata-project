@@ -28,6 +28,11 @@ class Block extends BaseBlock
     protected $id;
 
     /**
+     * @var
+     */
+    private $gallery;
+
+    /**
      * Get id
      *
      * @return int $id
@@ -36,4 +41,21 @@ class Block extends BaseBlock
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * @param mixed $gallery
+     */
+    public function setGallery($gallery)
+    {
+        $this->gallery = $gallery;
+    }
+
 }

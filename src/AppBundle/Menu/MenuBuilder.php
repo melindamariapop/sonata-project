@@ -95,7 +95,7 @@ class MenuBuilder
             ->createQueryBuilder('p')
             ->select('p.name, p.url')
             ->where('p.site = :site')
-            ->andWhere('p.parent = :homepage')
+            ->andWhere('p.parent = :homepage or p.parent is null')
             ->andWhere('p.showOnMenu = true')
             ->setParameters([
                 'site' => $this->getCurrentSite(),

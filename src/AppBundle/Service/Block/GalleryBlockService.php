@@ -73,13 +73,13 @@ class GalleryBlockService extends BaseBlockService
                     ['nrPhotos', 'integer', [
                         'required' => true,
                         'label' => 'Number of photos on the page'
-                    ]],
-                    ['gallery', 'entity', [
-                        'class' => Gallery::class,
-                        'required' => true,
-                        'label' => 'gallery photos'
                     ]]
                 ],
+            ])
+            ->add('gallery', 'entity',[
+                'class' => Gallery::class,
+                'required' => true,
+                'label' => 'Choose a gallery'
             ]);
         $formMapper
             ->add('translations', 'a2lix_translations', [
@@ -115,6 +115,7 @@ class GalleryBlockService extends BaseBlockService
             'context' => $blockContext,
             'block' => $block,
             'settings' => $blockContext->getSettings(),
+            'gallery' => $block->getGallery(),
         ), $response);
     }
 
