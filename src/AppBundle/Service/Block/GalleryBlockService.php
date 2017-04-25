@@ -108,7 +108,6 @@ class GalleryBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $products = $this->em->getRepository(Product::class)->findAll();
-        $translationFields =  $this->em->getRepository(BlockTranslation::class)->findOneBy(['translatable'=>$blockContext->getBlock(),'locale'=>'it'])->getTranslatableFields();
         $block = $this->em->getRepository(Block::class)->find($blockContext->getBlock());
 
         return $this->renderResponse($blockContext->getTemplate(), array(
@@ -116,7 +115,6 @@ class GalleryBlockService extends BaseBlockService
             'context' => $blockContext,
             'block' => $block,
             'settings' => $blockContext->getSettings(),
-            'translationFields' => $translationFields,
         ), $response);
     }
 
