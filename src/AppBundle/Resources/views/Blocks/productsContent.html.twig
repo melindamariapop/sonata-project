@@ -8,13 +8,13 @@
         <h2 class="intro-text text-center">
             {{ block.translate(app.request.locale).translatableFields.description|raw }}
         </h2>
-    </div>
-    {% for product in products %}
+    </div>{{ dump(block.categoriesList) }}
+    {% for categoryCollection in block.categoriesList %}
         <div class="col-sm-4 text-center">
             <img class="img-responsive" src="{{ asset('bundles/app/images/cover.jpg') }}" alt="">
-            <h3>{{ product.title }}</h3>
+            <h3>{{ categoryCollection.category.name }}</h3>
             <h5>
-                {{ product.rawDescription|raw }}
+                {{ categoryCollection.category.description }}
             </h5>
         </div>
     {% endfor %}

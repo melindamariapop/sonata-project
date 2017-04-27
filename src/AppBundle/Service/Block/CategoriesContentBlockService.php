@@ -102,12 +102,12 @@ class CategoriesContentBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $block = $this->em->getRepository(Block::class)->find($blockContext->getBlock());
-
+//        var_dump($block->getCategoriesList());die;
         return $this->renderResponse($blockContext->getTemplate(), array(
             'context' => $blockContext,
             'block' => $block,
             'settings' => $blockContext->getSettings(),
-            'products' => $block->getProducts()
+            'categories' => $block->getCategoriesList()
         ), $response);
     }
 }
