@@ -101,6 +101,7 @@ class MenuBuilder
                 'site' => $this->getCurrentSite(),
                 'homepage' => $homepage
             ])
+            ->orderBy('p.position')
             ->getQuery()
             ->getResult()
             ;

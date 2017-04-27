@@ -47,11 +47,18 @@ class Category
     private $products;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CategoryCollection", cascade={"persist", "remove"}, orphanRemoval=true, mappedBy="category")
+     */
+    protected $categoriesCollection;
+
+    /**
      * Category constructor.
      */
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->categoriesCollection = new ArrayCollection();
     }
 
     /**
@@ -136,10 +143,26 @@ class Category
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCategoriesCollection()
+    {
+        return $this->categoriesCollection;
+    }
+
+    /**
+     * @param ArrayCollection $categoriesCollection
+     */
+    public function setCategoriesCollection($categoriesCollection)
+    {
+        $this->categoriesCollection = $categoriesCollection;
     }
 }

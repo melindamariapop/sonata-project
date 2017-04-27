@@ -19,6 +19,11 @@
         <many-to-one field="gallery" target-entity="Application\Sonata\MediaBundle\Entity\Gallery">
             <join-column name="gallery_id" referenced-column-name="id" />
         </many-to-one>
-
+        <one-to-many field="categoriesList" target-entity="AppBundle\Entity\CategoryCollection" mapped-by="block">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

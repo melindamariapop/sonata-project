@@ -17,6 +17,7 @@ sonata_block:
         sonata.block.gallery:
         app.block.footer:
         sonata.page.block.shared_block:
+        app.block.categories_content:
 #        sonata.admin.block.search_result:
         sonata.block.service.template:
             contexts:   [admin]

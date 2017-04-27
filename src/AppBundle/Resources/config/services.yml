@@ -33,6 +33,15 @@ services:
             tags:
                 - { name: sonata.block }
 
+    app.block.categories_content:
+        class: AppBundle\Service\Block\CategoriesContentBlockService
+        arguments:
+            - ~
+            - "@templating"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: sonata.block }
+
     app.block.header:
         class: AppBundle\Service\Block\HeaderBlockService
         arguments:
@@ -76,3 +85,9 @@ services:
         arguments: ['%kernel.default_locale%']
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest  }
+
+    app.admin.category_collection:
+        class: AppBundle\Admin\CategoryCollectionAdmin
+        arguments: [~, AppBundle\Entity\CategoryCollection, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CategoryCollection }

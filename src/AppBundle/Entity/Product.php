@@ -184,7 +184,7 @@ class Product
     /**
      * Get descriptionFormatter
      *
-     * @return string 
+     * @return string
      */
     public function getDescriptionFormatter()
     {
@@ -207,7 +207,7 @@ class Product
     /**
      * Get rawDescription
      *
-     * @return string 
+     * @return string
      */
     public function getRawDescription()
     {

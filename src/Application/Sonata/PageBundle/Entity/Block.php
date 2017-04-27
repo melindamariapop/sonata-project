@@ -11,6 +11,8 @@
 
 namespace Application\Sonata\PageBundle\Entity;
 
+use AppBundle\Entity\CategoryCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\PageBundle\Entity\BaseBlock as BaseBlock;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 
@@ -32,6 +34,19 @@ class Block extends BaseBlock
      */
     private $gallery;
 
+    /**
+     * @var
+     */
+    private $categoriesList;
+
+    /**
+     * Category constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->categoriesList = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -58,4 +73,40 @@ class Block extends BaseBlock
         $this->gallery = $gallery;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriesList()
+    {
+        return $this->categoriesList;
+    }
+
+    /**
+     * @param mixed $categoriesList
+     */
+    public function setCategoriesList($categoriesList)
+    {
+        $this->categoriesList = $categoriesList;
+    }
+
+    /**
+     * @param CategoryCollection $categoriesCollection
+     * @return $this
+     */
+    public function addCategoriesList(CategoryCollection $categoriesCollection)
+    {
+        $categoriesCollection->setBlock($this);
+        $this->categoriesList[] = $categoriesCollection;
+
+        return $this;
+    }
+
+    /**
+     * @param CategoryCollection $categoryCollection
+     */
+    public function removeCategoriesList(CategoryCollection $categoryCollection)
+    {
+        $this->categoriesList->removeElement($categoryCollection);
+    }
 }
