@@ -14,6 +14,7 @@
     "require": {
         "php": ">=5.3.9",
         "a2lix/translation-form-bundle": "^2.1",
+        "alexandresalome/multisite-bundle": "^0.2.0",
         "doctrine/doctrine-bundle": "~1.4",
         "doctrine/orm": "^2.4.8",
         "incenteev/composer-parameter-handler": "~2.0",

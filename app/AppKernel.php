@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
+            new Alex\MultisiteBundle\AlexMultisiteBundle(),
             new AppBundle\AppBundle(),
         );
 

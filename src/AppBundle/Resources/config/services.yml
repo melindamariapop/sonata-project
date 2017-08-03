@@ -33,6 +33,24 @@ services:
             tags:
                 - { name: sonata.block }
 
+    app.block.faq:
+          class: AppBundle\Service\Block\FaqBlockService
+          arguments:
+              - ~
+              - "@templating"
+              - "@doctrine.orm.entity_manager"
+          tags:
+              - { name: sonata.block }
+
+    app.block.contact:
+        class: AppBundle\Service\Block\ContactBlockService
+        arguments:
+            - ~
+            - "@templating"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: sonata.block }
+
     app.block.categories_content:
         class: AppBundle\Service\Block\CategoriesContentBlockService
         arguments:
@@ -91,3 +109,15 @@ services:
         arguments: [~, AppBundle\Entity\CategoryCollection, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: CategoryCollection }
+
+    app.admin.faq:
+        class: AppBundle\Admin\FaqAdmin
+        arguments: [~, AppBundle\Entity\Faq, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Faq }
+
+    app.admin.contact:
+        class: AppBundle\Admin\ContactAdmin
+        arguments: [~, AppBundle\Entity\Contact, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Contact }

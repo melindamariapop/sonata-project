@@ -102,8 +102,8 @@ sonata_page:
                     B: content_bottom
                     F: footer
         first_page:
-            path: 'AppBundle:Pages:firstPage.html.twig'
-            name: 'My first page'
+            path: 'AppBundle:Pages:categories.html.twig'
+            name: 'Categories'
             containers:
                 header:
                     name: Header
@@ -135,50 +135,71 @@ sonata_page:
                     B: content_bottom
                     F: footer
         second_page:
-            path: 'AppBundle:Pages:secondPage.html.twig'
-            name: 'My second page'
+            path: 'AppBundle:Pages:faq.html.twig'
+            name: 'FAQs'
             containers:
+                header:
+                    name: Header
                 content_top:
                     name: Top content
                 content:
                     name: Main content
-                left_col:
-                    name: Left column
-                right_col:
-                    name: Right column
+                content_bottom:
+                    name: Bottom content
+                footer:
+                    name: Footer
             matrix:
                 layout: |
+                    HHHHHHHH
+                    HHHHHHHH
                     TTTTTTTT
                     TTTTTTTT
                     CCCCCCCC
                     CCCCCCCC
-                    LLLLLLLL
-                    LLLLLLLL
-                    RRRRRRRR
-                    RRRRRRRR
+                    BBBBBBBB
+                    BBBBBBBB
+                    FFFFFFFF
+                    FFFFFFFF
 
                 mapping:
+                    H: header
                     T: content_top
                     C: content
-                    L: left_col
-                    R: right_col
+                    B: content_bottom
+                    F: footer
         third_page:
-            path: 'AppBundle:Pages:thirdPage.html.twig'
-            name: 'My third page'
+            path: 'AppBundle:Pages:contact.html.twig'
+            name: 'Contact'
             containers:
+                header:
+                    name: Header
                 content_top:
                     name: Top content
                 content:
                     name: Main content
+                content_bottom:
+                    name: Bottom content
+                footer:
+                    name: Footer
             matrix:
                 layout: |
+                    HHHHHHHH
+                    HHHHHHHH
                     TTTTTTTT
                     TTTTTTTT
                     CCCCCCCC
                     CCCCCCCC
+                    BBBBBBBB
+                    BBBBBBBB
+                    FFFFFFFF
+                    FFFFFFFF
+
                 mapping:
+                    H: header
                     T: content_top
                     C: content
+                    B: content_bottom
+                    F: footer
         another_page:
             path: 'AppBundle:Pages:anotherPage.html.twig'
             name: 'Another page'

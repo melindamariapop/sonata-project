@@ -16,6 +16,8 @@ sonata_block:
         app.block.main_content:
         sonata.block.gallery:
         app.block.footer:
+        app.block.faq:
+        app.block.contact:
         sonata.page.block.shared_block:
         app.block.categories_content:
 #        sonata.admin.block.search_result:

@@ -47,6 +47,12 @@ class Category
     private $products;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     */
+    private $media;
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CategoryCollection", cascade={"persist", "remove"}, orphanRemoval=true, mappedBy="category")
      */
@@ -164,5 +170,21 @@ class Category
     public function setCategoriesCollection($categoriesCollection)
     {
         $this->categoriesCollection = $categoriesCollection;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param mixed $media
+     */
+    public function setMedia($media)
+    {
+        $this->media = $media;
     }
 }

@@ -117,3 +117,13 @@ a2lix_translation_form:
     default_locale: en             # [1-b]
     required_locales: "%languages%"        # [1-c]
     templating: "A2lixTranslationFormBundle::default.html.twig"      # [2]
+
+alex_multisite:
+    default_branding: branding_A
+    default_locale:   en
+    brandings:
+        _defaults:
+            register: true
+        branding_A:
+            fr: { host: sonata-training }
+            en: { host: sonata-training }
